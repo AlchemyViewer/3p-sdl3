@@ -156,7 +156,6 @@ case "$AUTOBUILD_PLATFORM" in
 
         cp -a $PREFIX_RELEASE/include/SDL3/*.* $stage/include/SDL3
         cp -a $PREFIX_RELEASE/lib/*.so* $stage/lib/release
-        cp -a $PREFIX_RELEASE/lib/libSDL3main.a $stage/lib/release
     ;;
 
     *)
