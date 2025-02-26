@@ -28,8 +28,10 @@ source_environment_tempfile="$stage/source_environment.sh"
 "$autobuild" source_environment > "$source_environment_tempfile"
 . "$source_environment_tempfile"
 
-# remove_cxxstd
+# remove_cxxstd apply_patch
 source "$(dirname "$AUTOBUILD_VARIABLES_FILE")/functions"
+
+#apply_patch "$TOP/patches/fix-gdk-include-bug.patch" "$SDL_SOURCE_DIR"
 
 # Restore all .sos
 restore_sos ()
@@ -53,7 +55,7 @@ case "$AUTOBUILD_PLATFORM" in
 
         mkdir -p "build_debug"
         pushd "build_debug"
-            cmake .. -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/debug
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/debug
 
             cmake --build . --config Debug
             cmake --install . --config Debug
@@ -69,7 +71,7 @@ case "$AUTOBUILD_PLATFORM" in
 
         mkdir -p "build_release"
         pushd "build_release"
-            cmake .. -G "$AUTOBUILD_WIN_CMAKE_GEN" -A "$AUTOBUILD_WIN_VSPLATFORM" -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/release
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/release
 
             cmake --build . --config Release
             cmake --install . --config Release

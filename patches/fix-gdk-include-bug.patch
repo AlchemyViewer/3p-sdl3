@@ -1,0 +1,38 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d8e566738..c508c7323 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1963,12 +1963,12 @@ elseif(WINDOWS)
+     static __x_ABI_CWindows_CGaming_CInput_CIGamepadStatics2 *s2;
+     int main(int argc, char **argv) { return 0; }" HAVE_WINDOWS_GAMING_INPUT_H
+   )
+-  check_c_source_compiles("
+-    #include <stdbool.h>
+-    #define COBJMACROS
+-    #include <gameinput.h>
+-    int main(int argc, char **argv) { return 0; }" HAVE_GAMEINPUT_H
+-  )
++  # check_c_source_compiles("
++  #   #include <stdbool.h>
++  #   #define COBJMACROS
++  #   #include <gameinput.h>
++  #   int main(int argc, char **argv) { return 0; }" HAVE_GAMEINPUT_H
++  # )
+   check_include_file(dxgi1_6.h HAVE_DXGI1_6_H)
+   check_include_file(tpcshrd.h HAVE_TPCSHRD_H)
+   check_include_file(roapi.h HAVE_ROAPI_H)
+@@ -2129,10 +2129,10 @@ elseif(WINDOWS)
+     if(HAVE_WINDOWS_GAMING_INPUT_H)
+       set(SDL_JOYSTICK_WGI 1)
+     endif()
+-    if(HAVE_GAMEINPUT_H)
+-      sdl_glob_sources("${SDL3_SOURCE_DIR}/src/joystick/gdk/*.c")
+-      set(SDL_JOYSTICK_GAMEINPUT 1)
+-    endif()
++    # if(HAVE_GAMEINPUT_H)
++    #   sdl_glob_sources("${SDL3_SOURCE_DIR}/src/joystick/gdk/*.c")
++    #   set(SDL_JOYSTICK_GAMEINPUT 1)
++    # endif()
+     set(HAVE_SDL_JOYSTICK TRUE)
+ 
+     if(SDL_HAPTIC)
