@@ -55,7 +55,7 @@ case "$AUTOBUILD_PLATFORM" in
 
         mkdir -p "build_debug"
         pushd "build_debug"
-            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/debug
+            cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/debug
 
             cmake --build . --config Debug
             cmake --install . --config Debug
@@ -71,7 +71,7 @@ case "$AUTOBUILD_PLATFORM" in
 
         mkdir -p "build_release"
         pushd "build_release"
-            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/release
+            cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(cygpath -m $stage)/release
 
             cmake --build . --config Release
             cmake --install . --config Release
